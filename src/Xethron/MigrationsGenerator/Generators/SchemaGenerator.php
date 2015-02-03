@@ -68,7 +68,18 @@ class SchemaGenerator {
 	 */
 	public function getTables()
 	{
-		return $this->schema->listTableNames();
+		$tables = $this->schema->listTableNames();
+		if (is_array($tables))
+		{
+			for ($i = 0; $i < count($tables); $i++)
+			{
+				if (preg_match('/"/', $tables[$i]))
+				{
+					$tables[$i] = str_replace('"', '', $tables[$i]);
+				}
+			}
+		}
+		return $tables;
 	}
 
 	public function getFields($table)
