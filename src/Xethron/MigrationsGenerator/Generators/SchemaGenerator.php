@@ -43,6 +43,7 @@ class SchemaGenerator {
 		$connection = DB::connection($database)->getDoctrineConnection();
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('bit', 'boolean');
+		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('json', 'string');
 		
 		Type::addType('address_type', 'Doctrine\DBAL\Types\EnumAddressType');
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('address_type', 'address_type');
