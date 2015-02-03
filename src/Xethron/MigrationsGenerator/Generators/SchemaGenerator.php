@@ -1,6 +1,7 @@
 <?php namespace Xethron\MigrationsGenerator\Generators;
 
 use DB;
+use Doctrine\DBAL\Types\Type;
 
 class SchemaGenerator {
 
@@ -42,7 +43,16 @@ class SchemaGenerator {
 		$connection = DB::connection($database)->getDoctrineConnection();
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('bit', 'boolean');
-
+		
+		Type::addType('address_type', 'Doctrine\DBAL\Types\EnumAddressType');
+		$conn->getDatabasePlatform()->registerDoctrineTypeMapping('EnumAddressType', 'address_type');
+		Type::addType('authentication_method', 'Doctrine\DBAL\Types\EnumAuthenticationMethod');
+		$conn->getDatabasePlatform()->registerDoctrineTypeMapping('EnumAuthenticationMethod', 'authentication_method');
+		Type::addType('data_type', 'Doctrine\DBAL\Types\EnumDataType');
+		$conn->getDatabasePlatform()->registerDoctrineTypeMapping('EnumDataType', 'data_type');
+		Type::addType('language', 'Doctrine\DBAL\Types\EnumLanguage');
+		$conn->getDatabasePlatform()->registerDoctrineTypeMapping('EnumLanguage', 'language');
+		
 		$this->database = $connection->getDatabase();
 
 		$this->schema = $connection->getSchemaManager();
