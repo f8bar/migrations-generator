@@ -45,13 +45,13 @@ class SchemaGenerator {
 		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('bit', 'boolean');
 		
 		Type::addType('address_type', 'Doctrine\DBAL\Types\EnumAddressType');
-		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('EnumAddressType', 'address_type');
+		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('address_type', 'address_type');
 		Type::addType('authentication_method', 'Doctrine\DBAL\Types\EnumAuthenticationMethod');
-		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('EnumAuthenticationMethod', 'authentication_method');
+		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('authentication_method', 'authentication_method');
 		Type::addType('data_type', 'Doctrine\DBAL\Types\EnumDataType');
-		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('EnumDataType', 'data_type');
+		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('data_type', 'data_type');
 		Type::addType('language', 'Doctrine\DBAL\Types\EnumLanguage');
-		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('EnumLanguage', 'language');
+		$connection->getDatabasePlatform()->registerDoctrineTypeMapping('language', 'language');
 		
 		$this->database = $connection->getDatabase();
 
